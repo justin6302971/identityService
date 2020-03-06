@@ -1,0 +1,21 @@
+# canonical configuration
+version: "3.7"
+
+services:
+    web_idnt:
+        container_name: identityservice_web_${ENVTYPE}
+        image: identityservice_web:${IDENT_TAG}
+        depends_on:
+            - mysqldb-idnt
+        networks:
+            - idnt-nw
+    mysqldb-idnt:
+        container_name: identityservice_mysqldb_${ENVTYPE}
+        image: mysql:8.0.18
+        networks:
+            - idnt-nw
+networks:
+    idnt-nw:
+        name: idnt-nw
+    # external: true
+  
