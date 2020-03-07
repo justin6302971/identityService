@@ -1,0 +1,43 @@
+# dev configuration (use docker-compose up will use docker-compose.yml and docker-comspoe.override.yml both)
+# os: mac
+version: "3.7"
+
+services:
+    # web_idnt:
+    #     environment:
+    #         ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+    #         ASPNETCORE_URLS: ${ASPNETCORE_URLS}
+    #         ASPNETCORE_Kestrel__Certificates__Default__Password: ${ASPNETCORE_Kestrel__Certificates__Default__Password}
+    #         ASPNETCORE_Kestrel__Certificates__Default__Path: ${ASPNETCORE_Kestrel__Certificates__Default__Path}
+    #     ports:
+    #         - '8080:5000'
+    #         - '8081:5001'
+    #         - '5123'
+    #     expose:
+    #         - '5000'
+    #         - '5001'
+    #     build:
+    #         # context: ./Applications
+    #         context: ./
+    #         dockerfile: ./Applications/ASPNETIdentityServer/Dockerfile
+    #         args:
+    #             BUILD_ARG: Debug
+    #     volumes:
+    #     - .:/src
+    #     - $USERPROFILE/.aspnet/https:/https/
+    mysqldb-idnt:
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        ports:
+            - '3308:3306'
+        expose:
+            - '3306'
+        volumes:
+            - mysqldb_v:/var/lib/mysql
+volumes:
+    mysqldb_v:
+
+
